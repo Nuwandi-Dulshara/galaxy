@@ -114,25 +114,56 @@
         border-left: 5px solid var(--theme-gold);
     }
 
-    .btn-theme {
-        background: var(--theme-gold);
-        color: #111;
-        border: none;
+    .btn-theme,
+    .btn-primary,
+    .btn-theme-light {
+        background: var(--theme-gold) !important;
+        border-color: var(--theme-gold) !important;
+        color: #111 !important;
         font-weight: 600;
     }
 
-    .btn-theme:hover {
-        background: var(--theme-gold-light);
-        color: #111;
+    .btn-theme:hover,
+    .btn-primary:hover,
+    .btn-theme-light:hover {
+        background: var(--theme-gold-light) !important;
+        border-color: var(--theme-gold-light) !important;
+        color: #111 !important;
     }
 
-    .table thead {
-        background: var(--theme-dark);
-        color: white;
+    .btn-theme-icon {
+        background: var(--theme-gold) !important;
+        border-color: var(--theme-gold) !important;
+        color: #111 !important;
+        font-weight: 600;
+    }
+
+    .btn-theme-icon i {
+        color: #111 !important;
+    }
+
+    .btn-theme-icon:hover {
+        background: var(--theme-dark) !important;
+        border-color: var(--theme-dark) !important;
+        color: #fff !important;
+    }
+
+    .btn-theme-icon:hover i {
+        color: #fff !important;
+    }
+
+    .table thead th {
+        background: var(--theme-dark) !important;
+        color: #fff !important;
+        border-color: var(--theme-gold) !important;
     }
 
     .table tbody tr:hover {
         background: #faf7ea;
+    }
+
+    .table img {
+        border: 1px solid var(--theme-gold) !important;
     }
 
     .form-control:focus,
@@ -229,6 +260,8 @@
         </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
 </body>
 
 </html>

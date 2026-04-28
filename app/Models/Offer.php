@@ -9,15 +9,12 @@ class Offer extends Model
     protected $fillable = [
         'title',
         'description',
-        'discount_percent',
+        'original_price',
+        'offer_percentage',
+        'offer_price',
+        'is_available',
         'start_date',
         'end_date',
-        'is_active',
-    ];
-
-    protected $casts = [
-        'is_active' => 'boolean',
-        'start_date' => 'date',
-        'end_date' => 'date',
+        'image',
     ];
 }

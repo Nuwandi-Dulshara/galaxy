@@ -12,10 +12,13 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->integer('discount_percent')->default(0);
+            $table->decimal('original_price', 10, 2);
+            $table->decimal('offer_percentage', 5, 2)->default(0);
+            $table->decimal('offer_price', 10, 2);
+            $table->boolean('is_available')->default(true);
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

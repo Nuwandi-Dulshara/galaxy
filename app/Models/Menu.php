@@ -10,12 +10,17 @@ class Menu extends Model
         'name',
         'description',
         'price',
+        'category',
         'image',
         'is_available',
+        'unavailable_from',
+        'unavailable_to',
     ];
 
     protected $casts = [
         'is_available' => 'boolean',
+        'unavailable_from' => 'date',
+        'unavailable_to' => 'date',
         'price' => 'decimal:2',
     ];
 }

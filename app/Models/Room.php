@@ -13,17 +13,25 @@ class Room extends Model
         'room_size',
         'view',
         'bed_type',
-        'smoking',
         'capacity',
-        'breakfast',
         'image',
+        'images',
+        'smoking',
+        'breakfast',
         'is_featured',
+        'is_available',
+        'unavailable_from',
+        'unavailable_to',
     ];
 
     protected $casts = [
+        'images' => 'array',
         'smoking' => 'boolean',
         'breakfast' => 'boolean',
         'is_featured' => 'boolean',
+        'is_available' => 'boolean',
+        'unavailable_from' => 'date',
+        'unavailable_to' => 'date',
         'price' => 'decimal:2',
     ];
 }

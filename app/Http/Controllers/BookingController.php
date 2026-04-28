@@ -1,15 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-    public function index()
+    public function store(Request $request)
     {
-        $bookings = Booking::latest()->get();
-        return view('admin.bookings.index', compact('bookings'));
+        $validated = $request->validate([
+            'arrival_date' => ['required', 'date', 'after_or_equal:today'],
+            'departure_date' => ['required', 'date', 'after:arrival_date'],
+            'guests' => ['required', 'integer', 'min:1', 'max:4'],
+        ]);
+
+        Booking::create($validated);
+
+        return back()->with('success', 'Your booking request has been submitted successfully.');
     }
 }
