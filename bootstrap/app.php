@@ -14,6 +14,18 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
         ]);
+
+        // Force HTTPS in production environments
+        if (env('APP_ENV') === 'production') {
+            $middleware->web(function ($stack) {
+                return $stack->prepend(function ($request, $next) {
+                    if (!$request->secure()) {
+                        return redirect(preg_replace('#^http:#', 'https:', $request->url()), 301);
+                    }
+                    return $next($request);
+                });
+            });
+        }
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

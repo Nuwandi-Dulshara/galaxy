@@ -35,8 +35,8 @@ class RoomController extends Controller
             'unavailable_from' => 'required_if:availability,unavailable|nullable|date',
             'unavailable_to' => 'required_if:availability,unavailable|nullable|date|after_or_equal:unavailable_from',
 
-            // Minimum 3 images required when creating
-            'images' => 'required|array|min:3',
+            // Minimum 1 image required when creating
+            'images' => 'required|array|min:1',
             'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
@@ -87,8 +87,8 @@ class RoomController extends Controller
             'unavailable_from' => 'required_if:availability,unavailable|nullable|date',
             'unavailable_to' => 'required_if:availability,unavailable|nullable|date|after_or_equal:unavailable_from',
 
-            // New images are optional, but if uploaded, minimum 3 images required
-            'images' => 'nullable|array|min:3',
+            // New images are optional, but if uploaded, minimum 1 image required
+            'images' => 'nullable|array|min:1',
             'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 

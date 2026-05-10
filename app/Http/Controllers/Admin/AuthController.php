@@ -20,16 +20,23 @@ class AuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        $credentials['is_admin'] = true;
+        // Allow login via username or email
+        $field = filter_var($credentials['username'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        
+        $attemptCredentials = [
+            $field => $credentials['username'],
+            'password' => $credentials['password'],
+            'is_admin' => true,
+        ];
 
-        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+        if (Auth::attempt($attemptCredentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
             return redirect()->intended(route('admin.dashboard'));
         }
 
         return back()->withErrors([
-            'username' => 'Invalid admin username or password.',
+            'username' => 'Invalid admin username/email or password.',
         ])->onlyInput('username');
     }
 

@@ -46,61 +46,7 @@
 {{-- Book now form --}}
 <section class="py-5 bg-white">
     <div class="container">
-        <h6 class="fw-normal mb-3">Book Room</h6>
-
-        @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul class="mb-0">
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-
-        <form class="row g-3 align-items-end" action="{{ route('bookings.store') }}" method="POST">
-            @csrf
-
-            <div class="col-lg-3 col-md-6">
-                <label class="form-label small">Arrival</label>
-                <div class="input-group shadow-none">
-                    <input type="date" name="arrival_date" class="form-control bg-white"
-                        value="{{ old('arrival_date') }}">
-                    <span class="input-group-text bg-white border-start-0 text-muted">
-                        <i class="bi bi-calendar3"></i>
-                    </span>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <label class="form-label small">Departure</label>
-                <div class="input-group shadow-none">
-                    <input type="date" name="departure_date" class="form-control bg-white"
-                        value="{{ old('departure_date') }}">
-                    <span class="input-group-text bg-white border-start-0 text-muted">
-                        <i class="bi bi-calendar3"></i>
-                    </span>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <label class="form-label small">Guests</label>
-                <select name="guests" class="form-select bg-white">
-                    <option value="1" {{ old('guests') == '1' ? 'selected' : '' }}>1 guest</option>
-                    <option value="2" {{ old('guests', '2') == '2' ? 'selected' : '' }}>2 guests</option>
-                    <option value="3" {{ old('guests') == '3' ? 'selected' : '' }}>3 guests</option>
-                    <option value="4" {{ old('guests') == '4' ? 'selected' : '' }}>4 guests</option>
-                </select>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <button type="submit" class="btn btn-dark w-100 fw-bold py-2 rounded-0">BOOK NOW</button>
-            </div>
-        </form>
+        <x-booking-form :rooms="$allRooms" />
     </div>
 </section>
 

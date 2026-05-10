@@ -29,16 +29,20 @@ class HomeController extends Controller
             Room::where('is_available', true)->latest()->take(3)->get()
         );
 
+        $allRooms = Room::where('is_available', true)->latest()->get();
+
         $menus = $this->prepareMenusForPublicView(
             Menu::where('is_available', true)->latest()->take(6)->get()
         );
 
-        return view('pages.index', compact('featuredRooms', 'rooms', 'menus'));
+        return view('pages.index', compact('featuredRooms', 'rooms', 'allRooms', 'menus'));
     }
 
     public function rooms()
     {
-        $rooms = Room::latest()->get();
+        $rooms = $this->prepareRoomsForPublicView(
+            Room::where('is_available', true)->latest()->get()
+        );
 
         return view('pages.rooms', compact('rooms'));
     }

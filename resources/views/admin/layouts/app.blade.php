@@ -252,7 +252,19 @@
 
             <div class="content-area">
                 @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
+                <x-admin.alert-success />
+                @endif
+
+                @if(session('error'))
+                <x-admin.alert-error />
+                @endif
+
+                @if(session('info'))
+                <x-admin.alert-info />
+                @endif
+
+                @if(session('warning'))
+                <x-admin.alert-warning />
                 @endif
 
                 @yield('content')

@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\TracksAudit;
 use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
+    use TracksAudit;
+
     protected $fillable = [
         'name',
         'description',

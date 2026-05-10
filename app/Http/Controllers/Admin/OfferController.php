@@ -28,8 +28,8 @@ class OfferController extends Controller
             'original_price' => 'required|numeric|min:0',
             'offer_percentage' => 'required|numeric|min:0|max:100',
             'is_available' => 'nullable|boolean',
-            'start_date' => 'nullable|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'start_date' => 'required|date|after_or_equal:today',
+            'end_date' => 'required|date|after:start_date',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
@@ -69,8 +69,8 @@ class OfferController extends Controller
             'original_price' => 'required|numeric|min:0',
             'offer_percentage' => 'required|numeric|min:0|max:100',
             'is_available' => 'nullable|boolean',
-            'start_date' => 'nullable|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'start_date' => 'required|date|after_or_equal:today',
+            'end_date' => 'required|date|after:start_date',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 

@@ -15,22 +15,17 @@ use App\Http\Controllers\Admin\SettingController;
 
 use App\Models\Room;
 
-Route::get('/rooms', function () {
-    $rooms = Room::latest()->get();
-    return view('pages.rooms', compact('rooms'));
-})->name('rooms');
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/rooms', [HomeController::class, 'rooms'])->name('rooms');
 Route::get('/menus', [HomeController::class, 'menus'])->name('menus');
 Route::get('/offers', [HomeController::class, 'offers'])->name('offers');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-Route::post('/bookings', [FrontBookingController::class, 'store'])->name('bookings.store');
+Route::post('/bookings', [FrontBookingController::class, 'store'])->middleware('throttle:10,1')->name('bookings.store');
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('admin.login');
-    Route::post('/login', [AuthController::class, 'login'])->name('admin.login.submit');
+    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('admin.login.submit');
 
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');

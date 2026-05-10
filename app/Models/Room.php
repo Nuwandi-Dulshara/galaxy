@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\TracksAudit;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Room extends Model
 {
+    use TracksAudit;
+
     protected $fillable = [
         'name',
         'description',
@@ -34,4 +38,9 @@ class Room extends Model
         'unavailable_to' => 'date',
         'price' => 'decimal:2',
     ];
+
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(Booking::class);
+    }
 }
